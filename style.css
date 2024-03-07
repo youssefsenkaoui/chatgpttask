@@ -1,0 +1,47 @@
+#chatbox {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 350px;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    /* padding: 10px; */
+    margin-bottom: 15px ; 
+}
+
+#open-close-chat-btn {
+    position: fixed;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    bottom: 10px;
+    right: 10px;
+    height: 60px;
+    width: 60px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s linear;
+}
+#open-close-chat-btn:hover{
+    border-radius: 40%;
+}
+#commerceTitle{
+    height: 50px;
+}
+
+#btn-commerce, #btn-vente, #btn-CRC,
+#commerceQ1, #commerceQ2, #commerceQ3{
+    height: 50px;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+}
+#btn-commerce:hover, #btn-vente:hover, #btn-CRC:hover,
+#commerceQ1:hover, #commerceQ2:hover, #commerceQ3:hover{
+    background-color: #ececec;
+}
