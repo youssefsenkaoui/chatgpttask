@@ -83,12 +83,12 @@ function originalContent() {
     });
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
-function btnsContents(title){
+function btnsContents(title,fun,id){
     const newContent =`
         <div class="bg-info text-center text-light" id="commerceTitle">
             <h2>${title}</h2>
         </div>
-        <form action="filterData.php" method="POST" class="p-4">
+        <form action="filterData.php" method="POST" onsubmit="${fun};" class="p-4">
             <div class="mt-4">
                 <label for="name">Date debut:</label>
                 <input type="date" name="date_debut" id="date-commerce" class="form-control">
@@ -105,7 +105,12 @@ function btnsContents(title){
                         </svg>
                         Retour
                     </a>
-                    <button type="submit" onclick="(e)=>{e.preventDefault();}" class="col-4 btn btn-outline-success m-4" onclick="btnToCommerceQuesionts()">suivant</button>
+                    <button type="submit" 
+                        id="${id}"
+                        onclick="(e)=>{
+                            e.preventDefault();
+                            
+                        }" class="col-4 btn btn-outline-success m-4">suivant</button>
                 </div>
             </div>
         </form>
@@ -117,6 +122,7 @@ function btnsContents(title){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
 const btnsContainer = document.getElementById('btns-container');
 const btnCommerce = document.getElementById('btn-commerce');
 const btnVente = document.getElementById('btn-vente');
@@ -124,19 +130,19 @@ const btnCRC = document.getElementById('btn-CRC');
 
 
 function btnClickCommerce(){
-    const newContent =btnsContents('Commerce');
+    const newContent =btnsContents('Commerce',"btnToCommerceQuesionts()","commerceSuivant");
     btnsContainer.innerHTML = newContent;
     originalContent();
 } 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 function btnClickVente(){
-    const newContent =btnsContents('Vente');
+    const newContent =btnsContents('Vente',"btnToVenteQuesionts()","venteSuivant");
     btnsContainer.innerHTML = newContent;
     originalContent();
 } 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 function btnClickCRC(){
-    const newContent =btnsContents('CRC');
+    const newContent =btnsContents('CRC',"btnToCRCQuesionts()","CRCSuivant");
     btnsContainer.innerHTML = newContent;
     originalContent();
 }
@@ -148,6 +154,62 @@ function btnClickCRC(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+function btnToCommerceQuesionts() {
+    
+    const questions=`
+        ${question('commerceQ1','hi,how are you ?c',"btnCommerceQ1()")}
+        ${question('commerceQ2','hi,how are you,today ?c',"btnCommerceQ2()")}
+        ${question('commerceQ3','hello,how are you ?c',"btnCommerceQ2()")}
+    `;
+    const newContent = questionsContents(questions,'commerceTitle');
+    btnsContainer.innerHTML = newContent;
+
+    const retourBtn = document.getElementById('retourBtn');
+    retourBtn.addEventListener('click', () => {
+        const originalContentHTML =btnsContents('Commerce',"btnToCommerceQuesionts()","commerceSuivant");
+        btnsContainer.innerHTML = originalContentHTML;
+        originalContent(); 
+    });
+
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+function btnToVenteQuesionts() {
+    const questions=`
+        ${question('venteQ1','hi,how are you ?v',"btnVenteQ1()")}
+        ${question('venteQ2','hi,how are you,today ?v',"btnVenteQ2()")}
+        ${question('venteQ3','hello,how are you ?v',"btnVenteQ3()")}
+    `;
+    const newContent = questionsContents(questions,'VenteTitle');
+    btnsContainer.innerHTML = newContent;
+
+    const retourBtn = document.getElementById('retourBtn');
+    retourBtn.addEventListener('click', () => {
+        const originalContentHTML =btnsContents('Vente',"btnToVenteQuesionts()","venteSuivant");
+        btnsContainer.innerHTML = originalContentHTML;
+        originalContent(); 
+    });
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+function btnToCRCQuesionts() {
+    const questions=`
+        ${question('CRCQ1','hi,how are you ?C',"btnCRCQ1()")}
+        ${question('CRCQ2','hi,how are you,today ?C',"btnCRCQ2()")}
+        ${question('CRCQ3','hello,how are you ?C',"btnCRCQ3()")}
+    `;
+    const newContent = questionsContents(questions,'CRCTitle');
+    btnsContainer.innerHTML = newContent;
+
+    const retourBtn = document.getElementById('retourBtn');
+    retourBtn.addEventListener('click', () => {
+        const originalContentHTML =btnsContents('CRC',"btnToCRCQuesionts()","CRCSuivant");
+        btnsContainer.innerHTML = originalContentHTML;
+        originalContent(); 
+    });
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function question(id,Q,fun){
     const question = `
@@ -157,8 +219,9 @@ function question(id,Q,fun){
     `;
     return question;
 }
+
 function questionsContents(Qs,id){
-    const newContent = `
+    const newContent =`
         <div class="bg-info text-center text-light" id="${id}">
         <h2 class="fs-5 pt-3">Chisissez la quetion qui vous voullez</h2>
         </div>
@@ -179,60 +242,6 @@ function questionsContents(Qs,id){
     `;
     return newContent;
 }
-
-function btnToCommerceQuesionts() {
-    
-    const questions=`
-        ${question('commerceQ1','hi,how are you ?c',"btnCommerceQ1()")}
-        ${question('commerceQ2','hi,how are you,today ?c',"btnCommerceQ2()")}
-        ${question('commerceQ3','hello,how are you ?c',"btnCommerceQ2()")}
-    `;
-    const newContent = questionsContents(questions,'commerceTitle');
-    btnsContainer.innerHTML = newContent;
-
-    const retourBtn = document.getElementById('retourBtn');
-    retourBtn.addEventListener('click', () => {
-        const originalContentHTML =btnsContents('Commerce');
-        btnsContainer.innerHTML = originalContentHTML;
-        originalContent(); 
-    });
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-function btnToVenteQuesionts() {
-    const questions=`
-        ${question('venteQ1','hi,how are you ?v',"btnVenteQ1()")}
-        ${question('venteQ2','hi,how are you,today ?v',"btnVenteQ2()")}
-        ${question('venteQ3','hello,how are you ?v',"btnVenteQ3()")}
-    `;
-    const newContent = questionsContents(questions,'VenteTitle');
-    btnsContainer.innerHTML = newContent;
-
-    const retourBtn = document.getElementById('retourBtn');
-    retourBtn.addEventListener('click', () => {
-        const originalContentHTML =btnsContents('Vente');
-        btnsContainer.innerHTML = originalContentHTML;
-        originalContent(); 
-    });
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-function btnToCRCQuesionts() {
-    const questions=`
-        ${question('CRCQ1','hi,how are you ?C',"btnCRCQ1()")}
-        ${question('CRCQ2','hi,how are you,today ?C',"btnCRCQ2()")}
-        ${question('CRCQ3','hello,how are you ?C',"btnCRCQ3()")}
-    `;
-    const newContent = questionsContents(questions,'CRCTitle');
-    btnsContainer.innerHTML = newContent;
-
-    const retourBtn = document.getElementById('retourBtn');
-    retourBtn.addEventListener('click', () => {
-        const originalContentHTML =btnsContents('CRC');
-        btnsContainer.innerHTML = originalContentHTML;
-        originalContent(); 
-    });
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
