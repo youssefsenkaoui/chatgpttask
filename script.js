@@ -97,9 +97,9 @@ function btnsContents(title,fun,id){
                 <label for="name">Date fin:</label>
                 <input type="date" name="date_fin" id="date-commerce" class="form-control">
             </div>
-            <div class="grid p-3">
+            <div class="grid p-3" style="height: 50px;">
                 <div class="row">
-                    <a class="col-4 btn text-danger m-4" id="retourBtn">
+                    <a class="col-4 btn text-danger m-4" id="retourBtn" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
                         </svg>
@@ -110,7 +110,7 @@ function btnsContents(title,fun,id){
                         onclick="(e)=>{
                             e.preventDefault();
                             
-                        }" class="col-4 btn btn-outline-success m-4">suivant</button>
+                        }" class="col-4 btn btn-outline-success m-4" style="height: 40px;">suivant</button>
                 </div>
             </div>
         </form>
@@ -155,6 +155,39 @@ function btnClickCRC(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+function question(id,Q,fun){
+    const question = `
+        <div id="${id}" onclick="${fun}" class="w-100 mt-4 text-center fs-5 fw-light pt-1 cursor-pointer">
+            ${Q}
+        </div>
+    `;
+    return question;
+}
+
+function questionsContents(Qs,id){
+    const newContent =`
+        <div class="bg-info text-center text-light" id="${id}">
+        <h2 class="fs-5 pt-2 pb-1">Chisissez la quetion qui vous voullez</h2>
+        </div>
+        <div>
+            ${Qs}
+        </div>
+        <div class="grid p-3">
+            <div class="row">
+                <a class="col-4 btn text-danger m-4" id="retourBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                    </svg>
+                    Retour
+                </a>
+                <a class="col-4 btn btn-outline-success m-4" id="retourBtn">suivant</a>
+            </div>
+        </div>
+    `;
+    return newContent;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 function btnToCommerceQuesionts() {
     
     const questions=`
@@ -210,40 +243,6 @@ function btnToCRCQuesionts() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function question(id,Q,fun){
-    const question = `
-        <div id="${id}" onclick="${fun}" class="w-100 mt-4 text-center fs-5 fw-light pt-1">
-            ${Q}
-        </div>
-    `;
-    return question;
-}
-
-function questionsContents(Qs,id){
-    const newContent =`
-        <div class="bg-info text-center text-light" id="${id}">
-        <h2 class="fs-5 pt-3">Chisissez la quetion qui vous voullez</h2>
-        </div>
-        <div>
-            ${Qs}
-        </div>
-        <div class="grid p-3">
-            <div class="row">
-                <a class="col-4 btn text-danger m-4" id="retourBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
-                    </svg>
-                    Retour
-                </a>
-                <a class="col-4 btn btn-outline-success m-4" id="retourBtn">suivant</a>
-            </div>
-        </div>
-    `;
-    return newContent;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,7 +258,7 @@ function responseContents(qs,resp,id){
                 ${resp}
             </div>
         </div>
-        <div class="grid p-3">
+        <div class="grid p-3" >
             <div class="row">
                 <a class="col-4 btn text-danger m-4" id="retourBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
@@ -433,7 +432,6 @@ function btnCRCQ2() {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function btnCRCQ3() {
     const newContent = responseContents('hello,how are you ?C',"hello,I'm fine.","CRCQ3");
     btnsContainer.innerHTML = newContent;
@@ -450,4 +448,3 @@ function btnCRCQ3() {
         originalContent(); 
     });
 }
-

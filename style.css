@@ -36,12 +36,16 @@
 }
 
 #btn-commerce, #btn-vente, #btn-CRC,
-#commerceQ1, #commerceQ2, #commerceQ3{
+#commerceQ1, #commerceQ2, #commerceQ3,
+#venteQ1, #venteQ2, #venteQ3,
+#CRCQ1, #CRCQ2, #CRCQ3{
     height: 50px;
     transition: 0.3s ease-in;
     cursor: pointer;
 }
 #btn-commerce:hover, #btn-vente:hover, #btn-CRC:hover,
-#commerceQ1:hover, #commerceQ2:hover, #commerceQ3:hover{
+#commerceQ1:hover, #commerceQ2:hover, #commerceQ3:hover,
+#venteQ1:hover, #venteQ2:hover, #venteQ3:hover,
+#CRCQ1:hover, #CRCQ2:hover, #CRCQ3:hover{
     background-color: #ececec;
 }
